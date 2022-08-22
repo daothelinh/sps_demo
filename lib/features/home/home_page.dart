@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'presentation/widgets/drawer.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -9,18 +11,7 @@ class HomePage extends StatelessWidget {
     final appbar = AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 16),
-          child: IconButton(
-            onPressed: () => {},
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ],
+      iconTheme: IconThemeData(color: Colors.black),
       leading: Padding(
         padding: const EdgeInsets.only(left: 8),
         child: Container(
@@ -58,6 +49,7 @@ class HomePage extends StatelessWidget {
       onTap: () => Get.focusScope!.unfocus(),
       child: Scaffold(
         appBar: appbar,
+        endDrawer: const PersonDrawer(),
         body: body,
       ),
     );

@@ -10,5 +10,5 @@ class AppStrings {
   static const String loginButton = 'Log In';
 
   //home_page
-
+  static const String logOut = 'Log Out';
 }

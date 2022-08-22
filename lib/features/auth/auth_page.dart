@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sps_demo/core/values/strings.dart';
 import 'package:get/get.dart';
+import 'package:sps_demo/features/auth/presentation/controller/auth_controller.dart';
 
 import 'presentation/widgets/login/login_page.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends GetView<AuthController> {
   const AuthPage({Key? key}) : super(key: key);
+
+  // const AuthPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

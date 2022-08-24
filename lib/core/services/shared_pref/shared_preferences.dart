@@ -6,13 +6,13 @@ class SharedPreferenceHelper {
   SharedPreferenceHelper()
       : _sharedPreference = SharedPreferences.getInstance();
   static const String fullName = "fullName";
-  static const String password = "password";
+  //static const String password = "password";
   Future<String?> get getUserName async {
     SharedPreferences preference = await _sharedPreference;
     return preference.getString(fullName);
   }
 
-  Future<bool> saveUserName(String phone) async {
+  Future<bool?> saveUserName(String phone) async {
     SharedPreferences preference = await _sharedPreference;
     return preference.setString(fullName, phone);
   }

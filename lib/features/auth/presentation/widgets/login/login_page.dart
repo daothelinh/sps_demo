@@ -69,7 +69,7 @@ class LoginPage extends GetView<LoginController> {
             () => CommonButton(
               onPressed: () {
                 controller.doLoginUser(
-                    fullName: controller.fullnameController.text);
+                    fullName: controller.usernameController.text);
               },
               text: AppStrings.loginButton,
               child: controller.loading.isTrue

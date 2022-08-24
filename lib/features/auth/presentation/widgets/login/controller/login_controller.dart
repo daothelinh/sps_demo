@@ -16,7 +16,7 @@ class LoginController extends GetxController {
     required this.doLogin,
   });
   //loginpage
-  final TextEditingController fullnameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   // final TextEditingController passwordController = TextEditingController();
   // final TextEditingController phoneController = TextEditingController();
   var tokenLogin = ''.obs;
@@ -32,10 +32,10 @@ class LoginController extends GetxController {
 
   void checkLogin() async {
     SharedPreferenceHelper sharedPreferenceHelper = Get.find();
-    var fullName = await sharedPreferenceHelper.getUserName;
-    if (fullName != null) {
-      fullnameController.text = fullName;
-      doLoginUser(fullName: fullName);
+    var userName = await sharedPreferenceHelper.getUserName;
+    if (userName != null) {
+      usernameController.text = userName;
+      doLoginUser(fullName: userName);
     }
   }
 

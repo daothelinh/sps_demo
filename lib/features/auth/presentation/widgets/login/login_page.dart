@@ -1,16 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sps_demo/core/values/common_field/common_button.dart';
 import 'package:sps_demo/core/values/strings.dart';
+import 'package:sps_demo/features/auth/presentation/widgets/login/controller/login_controller.dart';
 
 import '../../../../home/home_page.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends GetView<LoginController> {
   const LoginPage({Key? key}) : super(key: key);
-
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -44,29 +42,45 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.only(right: 16, top: 16, left: 16),
-            child: ElevatedButton(
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 16, top: 16, left: 16),
+          //   child: ElevatedButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => const HomePage()),
+          //       );
+          //     },
+          //     child: const Center(
+          //       child: Padding(
+          //         padding: EdgeInsets.all(16.0),
+          //         child: Text(
+          //           AppStrings.loginButton,
+          //           style: TextStyle(
+          //               color: Colors.white,
+          //               fontFamily: 'SVN-Gilroy',
+          //               fontSize: 20),
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // )
+          Obx(
+            () => CommonButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
+                controller.doLoginUser(
+                    fullName: controller.fullnameController.text);
               },
-              child: const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    AppStrings.loginButton,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'SVN-Gilroy',
-                        fontSize: 20),
-                  ),
-                ),
-              ),
+              text: AppStrings.loginButton,
+              child: controller.loading.isTrue
+                  ? const Center(
+                      child: CupertinoActivityIndicator(
+                        animating: false,
+                      ),
+                    )
+                  : null,
             ),
-          )
+          ),
         ],
       ),
     );

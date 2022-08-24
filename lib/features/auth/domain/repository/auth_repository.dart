@@ -12,5 +12,5 @@ abstract class AuthRepository {
   //     required String password});
   // Future<Either<Failure, ChangePasswordRes>> changePassword(
   //     {required String phoneNumber, required String newPassword});
-  // Future<Either<Failure, bool>> checkExisted({required String phoneNumber});
+  Future<Either<Failure, bool>> checkExisted({required String fullName});
 }

@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
       ),
       title: const Text(
         'Jane Hopper',
+        // Text(' ${_user?.fullName}'),
         style: TextStyle(
             color: Colors.black,
             fontFamily: 'assets/fonts/SVN-Gilroy-Bold.ttf'),

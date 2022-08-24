@@ -5,6 +5,9 @@ import 'package:sps_demo/features/auth/data/models/auth_res.dart';
 
 import '../../../../../../core/services/local_storage_service.dart';
 import '../../../../../../routes.dart';
+import '../../../../../../ui/process_usecase_result.dart';
+import '../../../../../../ui/snackbar.dart';
+import '../../../../domain/usecase/do_login.dart';
 
 class LoginController extends GetxController {
   final DoLogin doLogin;
@@ -13,7 +16,7 @@ class LoginController extends GetxController {
     required this.doLogin,
   });
   //loginpage
-  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController fullnameController = TextEditingController();
   // final TextEditingController passwordController = TextEditingController();
   // final TextEditingController phoneController = TextEditingController();
   var tokenLogin = ''.obs;
@@ -29,12 +32,10 @@ class LoginController extends GetxController {
 
   void checkLogin() async {
     SharedPreferenceHelper sharedPreferenceHelper = Get.find();
-    var userName = await sharedPreferenceHelper.getUserName;
-    // var password = await sharedPreferenceHelper.getPassword;
-    if (userName != null) {
-      usernameController.text = userName;
-      // passwordController.text = password;
-      doLoginUser(fullName: userName);
+    var fullName = await sharedPreferenceHelper.getUserName;
+    if (fullName != null) {
+      fullnameController.text = fullName;
+      doLoginUser(fullName: fullName);
     }
   }
 
@@ -66,5 +67,3 @@ class LoginController extends GetxController {
     }
   }
 }
-
-class DoLogin {}

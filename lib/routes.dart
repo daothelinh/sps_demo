@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
+import 'package:sps_demo/repository_bindings.dart';
+import 'package:sps_demo/usecase_bindings.dart';
 
 import 'features/auth/auth_page.dart';
+import 'features/auth/presentation/bindings/auth_bindings.dart';
 import 'features/home/home_page.dart';
 
 class Routes {
@@ -12,11 +15,11 @@ class Routes {
     GetPage(
       name: auth,
       page: () => const AuthPage(),
-      // bindings: [
-      //   RepositoryBinding(),
-      //   UseCaseBinding(),
-      //   AuthBindings(),
-      // ],
+      bindings: [
+        RepositoryBinding(),
+        UseCaseBinding(),
+        AuthBindings(),
+      ],
     ),
     GetPage(
       name: home,

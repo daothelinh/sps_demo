@@ -6,8 +6,9 @@ import 'package:sps_demo/core/values/strings.dart';
 import 'package:sps_demo/features/auth/presentation/widgets/login/controller/login_controller.dart';
 
 import '../../../../home/home_page.dart';
+import '../../controller/auth_controller.dart';
 
-class LoginPage extends GetView<LoginController> {
+class LoginPage extends GetView<AuthController> {
   const LoginPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

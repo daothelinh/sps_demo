@@ -53,11 +53,12 @@ class AuthPage extends GetView<AuthController> {
         ],
       ),
     );
+
     return GestureDetector(
       onTap: () => Get.focusScope!.unfocus(),
       child: Scaffold(
         appBar: appbar,
-        body: const LoginPage(),
+        body: LoginPage(),
       ),
     );
   }

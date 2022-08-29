@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../core/services/local_storage_service.dart';
 import 'presentation/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,6 +9,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController usernameController = TextEditingController();
+    var _user = LocalStorageService().userInfo;
     final appbar = AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
@@ -21,9 +24,10 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.cover),
         ),
       ),
-      title: const Text(
-        'Jane Hopper',
-        // Text(' ${_user?.fullName}'),
+      title: Text(
+        //'Jane Hopper',
+        // ' ${_user?.fullName}',
+        '$usernameController',
         style: TextStyle(
             color: Colors.black,
             fontFamily: 'assets/fonts/SVN-Gilroy-Bold.ttf'),

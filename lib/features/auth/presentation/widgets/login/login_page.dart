@@ -10,8 +10,10 @@ import '../../controller/auth_controller.dart';
 
 class LoginPage extends GetView<AuthController> {
   const LoginPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController usernameController = TextEditingController();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -29,8 +31,9 @@ class LoginPage extends GetView<AuthController> {
                   width: 1,
                 ),
               ),
-              child: const TextField(
-                decoration: InputDecoration(
+              child: TextField(
+                controller: usernameController,
+                decoration: const InputDecoration(
                     hintStyle: TextStyle(
                       fontFamily: 'SVN-Gilroy',
                       fontSize: 20,
@@ -68,9 +71,12 @@ class LoginPage extends GetView<AuthController> {
           // )
           Obx(
             () => CommonButton(
+              height: 100,
+              width: 20,
               onPressed: () {
                 controller.doLoginUser(
-                    fullName: controller.usernameController.text);
+                    phoneNumber: controller.phoneController,
+                    password: controller.passwordController);
               },
               text: AppStrings.loginButton,
               child: controller.loading.isTrue

@@ -2,6 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/failures/failures.dart';
+import '../../../../core/services/logger_service.dart';
 import '../../../../core/values/endpoints.dart';
 import '../../../../resful/resful_module.dart';
 import '../../domain/repository/auth_repository.dart';
@@ -13,8 +14,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, AuthRes>> doLogin(
-      {required String fullName}) async {
-    var body = {"fullName": fullName};
+      {required String phoneNumber, required String password}) async {
+    var body = {"phoneNumber": phoneNumber, "password": password};
     try {
       RestfulModule restfulModule = Get.find();
 
@@ -27,21 +28,21 @@ class AuthRepositoryImpl implements AuthRepository {
       var result = response.body;
       return Right(AuthRes.fromJson(result));
     } catch (e, stacktrace) {
-      // logger.e('$e $stacktrace');
+      logger.e('$e $stacktrace');
       return Left(SystemFailure(message: e.toString()));
     }
   }
+
   @override
   Future<Either<Failure, bool>> checkExisted(
-      {required String fullName}) async {
+      {required String password, required String phoneNumber}) async {
     try {
-      var response = await getConnect.post(Endpoints.checkExisted, {
-        "fullName": fullName,
-      });
+      var response = await getConnect.post(Endpoints.checkExisted,
+          {"phoneNumber": phoneNumber, "password": password});
       var result = response.body;
       return Right(result['existed']);
     } catch (e) {
-      // logger.e(e);
+      logger.e(e);
       return Left(SystemFailure(message: e.toString()));
     }
   }

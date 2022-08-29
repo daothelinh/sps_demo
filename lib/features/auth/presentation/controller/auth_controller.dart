@@ -8,7 +8,6 @@ import '../../../../routes.dart';
 import '../../../../ui/process_usecase_result.dart';
 import '../../data/models/auth_res.dart';
 import '../../domain/usecase/do_login.dart';
-import '../widgets/login/controller/login_controller.dart';
 
 class AuthController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -16,7 +15,7 @@ class AuthController extends GetxController
   // AuthController({required this.loginController});
 
   final PageController pageController = PageController();
-  // late TabController tabController;
+  late TabController tabController;
 
   // @override
   // void onInit() {
@@ -36,9 +35,9 @@ class AuthController extends GetxController
     // loginController,
   });
   //loginpage
-  final TextEditingController usernameController = TextEditingController();
-  // final TextEditingController passwordController = TextEditingController();
-  // final TextEditingController phoneController = TextEditingController();
+  // final TextEditingController usernameController = TextEditingController();
+  String passwordController = "123456";
+  String phoneController = "0397302290";
   var tokenLogin = ''.obs;
   late Rx<AuthRes?> loginRes;
   var loading = false.obs;
@@ -47,33 +46,38 @@ class AuthController extends GetxController
   void onInit() {
     super.onInit();
     loginRes = Rx<AuthRes?>(null);
+    tabController = TabController(length: 2, vsync: this);
     checkLogin();
   }
 
   void checkLogin() async {
     SharedPreferenceHelper sharedPreferenceHelper = Get.find();
-    var userName = await sharedPreferenceHelper.getUserName;
-    if (userName != null) {
-      usernameController.text = userName;
-      doLoginUser(fullName: userName);
+    var phoneNumber = await sharedPreferenceHelper.getPhoneNumber;
+    var password = await sharedPreferenceHelper.getPassword;
+    if (phoneNumber != null && password != null) {
+      phoneController = phoneNumber;
+      passwordController = password;
+      doLoginUser(phoneNumber: phoneNumber, password: password);
     }
   }
 
-  void doLoginUser({required String fullName}) async {
+  void doLoginUser(
+      {required String phoneNumber, required String password}) async {
     if (loading.value) return;
 
     SharedPreferenceHelper sharedPreferenceHelper = Get.find();
     try {
       loading.value = true;
-      var result = await doLogin(fullName: fullName);
+      var result = await doLogin(phoneNumber: phoneNumber, password: password);
       await processUsecaseResult(
         result: result,
         onSuccess: (res) {
           if (res is AuthRes) {
             loginRes.value = res;
             LocalStorageService().saveUserInfo(res.assessorInfo);
-            //doGetDamageTypes();
-            sharedPreferenceHelper.saveUserName(fullName);
+            // doGetDamageTypes();
+            sharedPreferenceHelper.saveUserName(phoneNumber);
+            // sharedPreferenceHelper.savePassword(password);
 
             Get.offAllNamed(Routes.home);
             Snackbar.show(type: SnackbarType.success, message: res.msg);

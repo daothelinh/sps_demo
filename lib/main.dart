@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sps_demo/common_service_binding.dart';
+import 'package:sps_demo/features/auth/presentation/bindings/auth_bindings.dart';
+import 'package:sps_demo/routes.dart';
 // import 'package:get/get.dart';
 
 import 'features/auth/auth_page.dart';
@@ -11,12 +15,15 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AuthPage(),
+      getPages: Routes.routes,
+      initialRoute: Routes.auth,
+      initialBinding: CommonServiceBinding(),
     );
   }
 }
+

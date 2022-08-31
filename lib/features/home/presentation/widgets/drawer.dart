@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/values/strings.dart';
+import '../../../auth/presentation/controller/auth_controller.dart';
 
 class PersonDrawer extends StatelessWidget {
   const PersonDrawer({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class PersonDrawer extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                // logOut();
+                logOut();
               },
             )
           ],

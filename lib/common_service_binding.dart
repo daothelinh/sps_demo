@@ -10,7 +10,7 @@ class CommonServiceBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<Logger>(Logger());
-    Get.lazyPut(() => GetConnect());
+    Get.put<GetConnect>(GetConnect());
     Get.lazyPut(() => SharedPreferenceHelper());
     Get.put<SharedPreferenceHelper>(SharedPreferenceHelper(), permanent: true);
     Get.put<LocalStorageService>(LocalStorageService());

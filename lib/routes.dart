@@ -24,6 +24,11 @@ class Routes {
     GetPage(
       name: home,
       page: () => const HomePage(),
+      bindings: [
+        RepositoryBinding(),
+        UseCaseBinding(),
+        AuthBindings(),
+      ],
     ),
   ];
 }

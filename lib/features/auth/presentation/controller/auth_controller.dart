@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sps_demo/ui/snackbar.dart';
 
 import '../../../../core/services/local_storage_service.dart';
@@ -8,6 +9,17 @@ import '../../../../routes.dart';
 import '../../../../ui/process_usecase_result.dart';
 import '../../data/models/auth_res.dart';
 import '../../domain/usecase/do_login.dart';
+
+void logOut() async {
+  var sharedPreferenceHelper = await SharedPreferences.getInstance();
+  try {
+    await sharedPreferenceHelper.clear();
+    LocalStorageService().removeAll();
+    Get.offAllNamed(Routes.auth);
+  } catch (e) {
+    Snackbar.show(type: SnackbarType.error, message: e.toString());
+  }
+}
 
 class AuthController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -35,7 +47,7 @@ class AuthController extends GetxController
     // loginController,
   });
   //loginpage
-  // final TextEditingController usernameController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
   String passwordController = "123456";
   String phoneController = "0397302290";
   var tokenLogin = ''.obs;

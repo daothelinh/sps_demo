@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sps_demo/core/values/common_field/common_button.dart';
 import 'package:sps_demo/core/values/strings.dart';
-import 'package:sps_demo/features/auth/presentation/widgets/login/controller/login_controller.dart';
 
-import '../../../../home/home_page.dart';
 import '../../controller/auth_controller.dart';
 
 class LoginPage extends GetView<AuthController> {
-  const LoginPage({Key? key}) : super(key: key);
+  // const LoginPage({Key? key}) : super(key: key);
+  // TextEditingController usernameController = TextEditingController();
 
+  LoginPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    TextEditingController usernameController = TextEditingController();
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -31,9 +30,8 @@ class LoginPage extends GetView<AuthController> {
                   width: 1,
                 ),
               ),
-              child: TextField(
-                controller: usernameController,
-                decoration: const InputDecoration(
+              child: const TextField(
+                decoration: InputDecoration(
                     hintStyle: TextStyle(
                       fontFamily: 'SVN-Gilroy',
                       fontSize: 20,

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sps_demo/features/home/presentation/controller/home_controller.dart';
 
 import '../../core/services/local_storage_service.dart';
 import 'presentation/widgets/drawer.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController usernameController = TextEditingController();
+    // TextEditingController usernameController = TextEditingController();
     var _user = LocalStorageService().userInfo;
     final appbar = AppBar(
       elevation: 0,
@@ -25,9 +26,9 @@ class HomePage extends StatelessWidget {
         ),
       ),
       title: Text(
-        //'Jane Hopper',
+        'haha',
         // ' ${_user?.fullName}',
-        '$usernameController',
+        // '$usernameController',
         style: TextStyle(
             color: Colors.black,
             fontFamily: 'assets/fonts/SVN-Gilroy-Bold.ttf'),
@@ -54,7 +55,7 @@ class HomePage extends StatelessWidget {
       onTap: () => Get.focusScope!.unfocus(),
       child: Scaffold(
         appBar: appbar,
-        endDrawer: const PersonDrawer(),
+        endDrawer: PersonDrawer(),
         body: body,
       ),
     );

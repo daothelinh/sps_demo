@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sps_demo/features/ai_mode_claim/presentation/pages/ai_mode_camera.dart';
 import 'package:sps_demo/features/home/presentation/controller/home_controller.dart';
 
 import '../../core/services/local_storage_service.dart';
@@ -46,7 +47,9 @@ class HomePage extends GetView<HomeController> {
           height: 5,
         ),
         ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Get.to(() => const AIModeCamera());
+            },
             icon: const Icon(Icons.camera_alt),
             label: const Text('Add New Claim'))
       ],

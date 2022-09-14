@@ -11,4 +11,9 @@ class AppStrings {
 
   //home_page
   static const String logOut = 'Log Out';
+
+  //cam_page
+  static const String frontCam = 'Front';
+  static const String rearCam = 'Rear';
+  static const String spaceCam = '|';
 }
